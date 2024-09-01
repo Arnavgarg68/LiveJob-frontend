@@ -197,8 +197,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: scroll 15s infinite linear alternate-reverse;
-    gap: 20px;
+    
 }
 
 .homepage-slide {
@@ -206,17 +205,6 @@
     height: 50px;
     padding: 10px;
     object-fit: contain;
-
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(calc(150px*2));
-    }
-
-    100% {
-        transform: translateX(calc(-150px*1));
-    }
 }
 
 .homepage-slide>img {

@@ -1,4 +1,4 @@
-import { React, useState  } from 'react'
+import { React, useEffect, useState ,useRef} from 'react'
 import Logo from "./materials/live-job-high-resolution-logo.png"
 import employee from "./materials/icons8-employee-100.png"
 import company from "./materials/icons8-company-100.png"
@@ -26,14 +26,13 @@ export default function Homepage() {
     const [login, setLogin] = useState(false);
     const [l, setL] = useState(false);
     const [s, setS] = useState(true);
-    const [joke,setJoke] = useState("");
+    const [joke, setJoke] = useState("");
     const loginswitchnavbar = () => {
         setLogin(true);
     }
     const loginswitch = (eve) => {
         const outer = document.querySelector('.homepage-login-box');
         const inner = document.querySelector('.homepage-login-box-inner-1');
-        console.log(outer)
         if (outer.contains(eve.target) && !inner.contains(eve.target)) {
             setLogin(false);
         }
@@ -49,7 +48,6 @@ export default function Homepage() {
     const passwordhide = () => {
         const element = document.getElementById("password");
         element.type = 'password';
-        console.log("object")
     }
     // const loadQuote = async()=>{
     //     console.log("hit")
@@ -72,6 +70,56 @@ export default function Homepage() {
     //         console.log(error);
     //     }
     // }
+    // const logoscroll = () => {
+    //     let track = document.querySelector('.homepage-slider-track');
+    //     let slides = Array.from(track.children);
+    //     let scrollspeed = "2px";
+    //     track.style.transform = `translate{${scrollspeed}}`;
+    //     if(track.getBoundingClientRect().left<= -slides[0].getBoundingClientRect().width){
+    //         track.appendChild(slides[0]);
+    //         slides = Array.from(track.children);
+    //         track.style.transform = 'translateX{0px}';
+    //     }
+    //     requestAnimationFrame(logoscroll);
+    // }
+    
+    const scrollSpeed = 0.7;
+    const trackRef = useRef(null);
+    const animationRef = useRef(null);
+    useEffect(()=>{
+        const track = trackRef.current;
+        let position = 0;
+
+        const scrollSlider = () => {
+            position -= scrollSpeed;
+            track.style.transform = `translateX(${position}px)`;
+
+            // Get the first slide and its dimensions
+            const firstSlide = track.firstChild;
+            const firstSlideWidth = firstSlide.getBoundingClientRect().width;
+
+            // Check if the first slide is out of view (completely scrolled out to the left)
+            if (position <= -firstSlideWidth) {
+                // Move the first slide to the end
+                track.appendChild(firstSlide);
+
+                // Adjust position to account for the moved slide
+                position += firstSlideWidth;
+
+                // Reset the transform to prevent any visible jump
+                track.style.transform = `translateX(${position}px)`;
+            }
+
+            // Continue the animation
+            animationRef.current = requestAnimationFrame(scrollSlider);
+        };
+
+        scrollSlider(); // Start the animation
+
+        return () => {
+            cancelAnimationFrame(animationRef.current); // Cleanup on unmount
+        };
+    },[scrollSpeed])
     return (
         <div id='homepage-main'>
             <div id="homepage-inner">
@@ -113,7 +161,7 @@ export default function Homepage() {
                     </div>
                     <div className="homepage-companies">
                         <div className="homepage-slider">
-                            <div className="homepage-slider-track">
+                            <div className="homepage-slider-track" ref={trackRef}>
                                 <div className="homepage-slide">
                                     <img src={flipkart} alt="" />
                                 </div>
@@ -155,12 +203,6 @@ export default function Homepage() {
                                 </div>
                                 <div className="homepage-slide">
                                     <img src={google} alt="" />
-                                </div>
-                                <div className="homepage-slide">
-                                    <img src={flipkart} alt="" />
-                                </div>
-                                <div className="homepage-slide">
-                                    <img src={flipkart} alt="" />
                                 </div>
                             </div>
                         </div>
