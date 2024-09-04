@@ -1,3 +1,86 @@
+.signupform-main{
+    width: 100%;
+    min-height: 100vh;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "poppins";
+    background: url('./bg-signupform.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.signupform-inner{
+    /* height: 90%; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.638);
+    box-shadow: 0px 0px 5px grey;
+    gap: 20px;
+}
+.signupform-formbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}.signupform-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.signupform-form>section{
+    display: flex;
+    align-items:center;
+    justify-content:left;
+    width: 90%;
+    gap: 20px;
+    flex-wrap: wrap;
+
+}
+.signupform-input-set{
+    display: flex;
+    flex-direction: column;
+}
+.signupform-inputfield{
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(100, 100, 254);
+}
+.signupform-inputfield-button{
+    min-height: 20px;
+    min-width: 80px;
+    background-color: rgb(69, 69, 255);
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+.signupform-inputfield-button:hover{
+    box-shadow: 0px 0px 2px grey;
+}
+.signupform-submit-button{
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(41, 162, 255);
+    color: white;
+    border: 0;
+    box-shadow: 0px 0px 2px grey;
+    cursor: pointer;
+}
+.signupform-submit-button:hover{
+    box-shadow: 0px 0px 4px grey;
+}
 .signupform-star{
     color: red;
     font-weight: bold;

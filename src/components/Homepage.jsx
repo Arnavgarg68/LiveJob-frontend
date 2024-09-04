@@ -5,12 +5,11 @@ import company from "./materials/icons8-company-100.png"
 import about from "./materials/icons8-about-100.png"
 import background from "./materials/background-homapage.png"
 import './componentsCss/homepage.css'
-
+import { useNavigate } from 'react-router-dom'
 // images companies
 import flipkart from "./materials/companies/flipkart.webp"
 import linkedin from "./materials/companies/linkedin.png"
 import tcs from "./materials/companies/TCS.png"
-// import twitter from "./materials/companies/twitter.png"
 import walmart from "./materials/companies/walmart.webp"
 import samsung from "./materials/companies/Samsung.webp"
 import zomato from "./materials/companies/zomato.png"
@@ -49,40 +48,7 @@ export default function Homepage() {
         const element = document.getElementById("password");
         element.type = 'password';
     }
-    // const loadQuote = async()=>{
-    //     console.log("hit")
-    //     try {
-    //         const response = await fetch("https://api.api-ninjas.com/v1/jokes",{
-    //             method:"GET",
-    //             headers:{
-    //                 "content-type":"application/json",
-    //                 'X-Api-Key': 'sK7jt/zqnnq2hsgj+AQosQ==qUag6oj5lDLmmspe'
-    //             }
-    //         });
-    //         if(!response.ok){
-    //             return;
-    //         }
-    //         let quote = await response.json();
-    //         quote=quote[0];
-    //         console.log(quote)
-    //         setJoke(quote.joke);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-    // const logoscroll = () => {
-    //     let track = document.querySelector('.homepage-slider-track');
-    //     let slides = Array.from(track.children);
-    //     let scrollspeed = "2px";
-    //     track.style.transform = `translate{${scrollspeed}}`;
-    //     if(track.getBoundingClientRect().left<= -slides[0].getBoundingClientRect().width){
-    //         track.appendChild(slides[0]);
-    //         slides = Array.from(track.children);
-    //         track.style.transform = 'translateX{0px}';
-    //     }
-    //     requestAnimationFrame(logoscroll);
-    // }
-    
+    const navigate = useNavigate();
     const scrollSpeed = 0.7;
     const trackRef = useRef(null);
     const animationRef = useRef(null);
@@ -221,7 +187,7 @@ export default function Homepage() {
                         <div className="homepage-login-agreement">
                             By clicking Agree & Join or Continue, you agree to the LiveJob User Agreement, Privacy Policy, and Cookie Policy.
                         </div>
-                        <div className="homepage-login-button" >
+                        <div className="homepage-login-button" onClick={()=>{navigate('/signup')}} >
                             Agree & SignUp
                         </div>
                         <hr className='homepage-hr' />
@@ -241,7 +207,7 @@ export default function Homepage() {
                         <div className="homepage-login-agreement">
                             {joke}
                         </div>
-                        <div className="homepage-login-button" >
+                        <div className="homepage-login-button" onClick={()=>{navigate('/login')}}>
                             Login
                         </div>
                         <hr className='homepage-hr' />
